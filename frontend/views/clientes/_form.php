@@ -12,11 +12,21 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'nombres')->textInput(['maxlength' => true]) ?>
+    <div class="row">
+        <div class="col-lg-4">
+            <?= $form->field($model, 'nombres')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-lg-4">
+            <?= $form->field($model, 'ap_paterno')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-lg-4">
+            <?= $form->field($model, 'ap_materno')->textInput(['maxlength' => true]) ?>
+        </div>
+    </div>
 
-    <?= $form->field($model, 'ap_paterno')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'ap_materno')->textInput(['maxlength' => true]) ?>
+
+
 
     <?= $form->field($model, 'sexo')->textInput(['maxlength' => true]) ?>
 

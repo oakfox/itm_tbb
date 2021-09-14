@@ -11,7 +11,9 @@ use yii\widgets\ActiveForm;
 <div class="clientes-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
+<h1>
+    "Ejemplo de etiqueta"
+</h1>
     <div class="row">
         <div class="col-lg-4">
             <?= $form->field($model, 'nombres')->textInput(['maxlength' => true]) ?>

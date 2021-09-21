@@ -30,29 +30,47 @@ use yii\widgets\ActiveForm;
 
 
 
-    <?= $form->field($model, 'sexo')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'sexo')->radioList(['H'=>'Hombre','M'=>'Mujer']) ?>
 
-    <?= $form->field($model, 'estado_civil')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'estado_civil')->dropDownList([
+            'S'=>'Soltero(a)',
+            'C'=>'Casado(a)',
+            'V'=>'Viudo(a)',
+            'D'=>'Divorciado(a)',
+            'U'=>'Unión Libre',
+    ]) ?>
 
-    <?= $form->field($model, 'fecha_nac')->textInput() ?>
+    <?= $form->field($model, 'fecha_nac')->widget(\yii\jui\DatePicker::classname(), [
+        'language' => 'es',
+        'dateFormat' => 'yyyy-MM-dd',
+    ]) ?>
 
     <?= $form->field($model, 'calle_num')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'estado_id')->textInput() ?>
+    <?= $form->field($model, 'estado_id')->dropDownList(\common\models\Estados::getOestados(),['prompt'=>"Selecciona..."]) ?>
 
     <?= $form->field($model, 'municipio_id')->textInput() ?>
 
-    <?= $form->field($model, 'cp')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'cp')->widget(\yii\widgets\MaskedInput::class, [
+        'mask' => '99999',
+    ]) ?>
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'tel_cel')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'tel_cel')->widget(\yii\widgets\MaskedInput::class, [
+        'mask' => '(999)-999-9999',
+    ]) ?>
 
-    <?= $form->field($model, 'tel_casa')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'tel_casa')->widget(\yii\widgets\MaskedInput::class, [
+        'mask' => '(999)-999-9999',
+    ]) ?>
 
     <?= $form->field($model, 'nombre_familiar')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'tel_familiar')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'tel_familiar')->widget(\yii\widgets\MaskedInput::class, [
+        'mask' => '(999)-999-9999',
+    ]) ?>
+
 
     <?= $form->field($model, 'rfc')->textInput(['maxlength' => true]) ?>
 
@@ -70,11 +88,11 @@ use yii\widgets\ActiveForm;
         <?= $form->field($model, 'updated_user_id')->textInput() ?>
 
 
-
     </div>
 
+
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Guardar', ['class' => 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

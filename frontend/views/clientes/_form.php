@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\file\FileInput;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Clientes */
@@ -76,7 +77,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'curp')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'url_foto')->textInput() ?>
+    <?= $form->field($model, 'url_foto')->widget(FileInput::classname(), [
+        'options' => ['accept' => 'image/*'],
+        'pluginOptions'=>['allowedFileExtensions'=>['jpeg','jpg','gif','png'],'showUpload' => false,],
+    ]);   ?>
+
+
+
 
     <div style="display: none">
         <?= $form->field($model, 'created_at')->textInput() ?>

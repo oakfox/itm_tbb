@@ -16,7 +16,7 @@ use Yii;
  * @property string|null $fecha_nac
  * @property string|null $calle_num
  * @property int|null $estado_id
- * @property int|null $municipio_id
+ * @property string|null $municipio_id
  * @property string|null $cp
  * @property string|null $email
  * @property string $tel_cel
@@ -29,7 +29,7 @@ use Yii;
  * @property string|null $updated_at
  * @property int|null $created_user_id
  * @property int|null $updated_user_id
- * @property int|null $url_foto
+ * @property string|null $url_foto
  */
 class Clientes extends \yii\db\ActiveRecord
 {
@@ -47,14 +47,17 @@ class Clientes extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombres', 'ap_paterno', 'ap_materno', 'tel_cel'], 'required'],
+            [['nombres', 'ap_paterno', 'ap_materno', 'tel_cel','email'], 'required'],
             [['fecha_nac', 'created_at', 'updated_at'], 'safe'],
-            [['estado_id', 'municipio_id', 'created_user_id', 'updated_user_id', 'url_foto'], 'default', 'value' => null],
-            [['estado_id', 'municipio_id', 'created_user_id', 'updated_user_id', 'url_foto'], 'integer'],
+            [['estado_id', 'created_user_id', 'updated_user_id'], 'default', 'value' => null],
+            [['estado_id', 'created_user_id', 'updated_user_id'], 'integer'],
             [['nombres', 'ap_paterno', 'ap_materno'], 'string', 'max' => 70],
             [['sexo', 'estado_civil'], 'string', 'max' => 1],
             [['calle_num', 'email', 'nombre_familiar'], 'string', 'max' => 100],
+            [[ 'email'], 'email'],
             [['cp'], 'string', 'max' => 5],
+            [['municipio_id'], 'string', 'max' => 50],
+            [['url_foto'], 'string', 'max' => 100],
             [['tel_cel', 'tel_casa', 'tel_familiar'], 'string', 'max' => 15],
             [['rfc'], 'string', 'max' => 13],
             [['curp'], 'string', 'max' => 18],

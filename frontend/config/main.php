@@ -10,6 +10,8 @@ return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'language'=>'es', // Este es el lenguaje en el que querés que muestre las cosas
+    //'sourceLanguage'=>'en',
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'request' => [

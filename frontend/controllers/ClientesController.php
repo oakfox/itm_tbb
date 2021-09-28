@@ -4,9 +4,11 @@ namespace frontend\controllers;
 
 use common\models\Clientes;
 use frontend\models\ClientesSearch;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * ClientesController implements the CRUD actions for Clientes model.
@@ -69,7 +71,25 @@ class ClientesController extends Controller
         $model = new Clientes();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
+            if ($model->load($this->request->post()) ) {
+
+                $image = UploadedFile::getInstance($model, 'url_foto');
+                if (!is_null($image)) {
+
+                    //$model->image_src_filename = $image->name;
+                    $ext = explode(".", $image->name);
+                    // generate a unique file name to prevent duplicate filenames
+                    $img="foto-".Yii::$app->security->generateRandomString(). ".{$ext[1]}";
+                    $model->url_foto = $img;
+                    // the path to save file, you can set an uploadPath
+                    // in Yii::$app->params (as used in example below)
+                    Yii::$app->params['uploadPath'] = Yii::$app->basePath . '/web/uploads/img/';
+                    $path = Yii::$app->params['uploadPath'] . $img;
+                    $image->saveAs($path);
+                }
+
+                $model->save();
+
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {

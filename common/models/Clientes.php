@@ -75,10 +75,13 @@ class Clientes extends \yii\db\ActiveRecord
             'ap_paterno' => 'Apellido Paterno *',
             'ap_materno' => 'Apellido Materno *',
             'sexo' => 'Sexo',
+            'nsexo' => 'Sexo',
             'estado_civil' => 'Estado Civil',
+            'nestado_civil' => 'Estado Civil',
             'fecha_nac' => 'Fecha Nacimiento',
             'calle_num' => 'Calle y Número',
             'estado_id' => 'Estado',
+            'nestado_id' => 'Estado',
             'municipio_id' => 'Municipio',
             'cp' => 'Código Postal',
             'email' => 'Email',
@@ -92,7 +95,40 @@ class Clientes extends \yii\db\ActiveRecord
             'updated_at' => 'Updated At',
             'created_user_id' => 'Created User ID',
             'updated_user_id' => 'Updated User ID',
-            'url_foto' => 'Url Foto',
+            'url_foto' => 'Foto',
+            'nurl_foto' => 'Foto',
         ];
+    }
+
+    function getNsexo(){
+        if($this->sexo=='H'){
+            return 'Hombre';
+        }else if($this->sexo=='M'){
+            return 'Mujer';
+        }else {
+            return '--';
+        }
+    }
+    function getOestado_civil(){
+        return [
+            'S'=>'Soltero(a)',
+            'C'=>'Casado(a)',
+            'V'=>'Viudo(a)',
+            'D'=>'Divorciado(a)',
+            'U'=>'Unión Libre',
+        ];
+    }
+
+    function getNestado_civil(){
+        return $this->getOestado_civil()[$this->estado_civil];
+    }
+
+    function getNestado_id(){
+        $est=Estados::findOne(['id'=>$this->estado_id]);
+        return $est?$est->nombre:'--';
+    }
+
+    function getNurl_foto(){
+        return '<img src="'. \yii\helpers\Url::base().'/uploads/img/'.$this->url_foto.'" width="30px" class="rounded float-left" alt="...">';
     }
 }

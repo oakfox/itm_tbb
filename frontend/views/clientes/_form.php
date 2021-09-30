@@ -33,13 +33,7 @@ use kartik\file\FileInput;
 
     <?= $form->field($model, 'sexo')->radioList(['H'=>'Hombre','M'=>'Mujer']) ?>
 
-    <?= $form->field($model, 'estado_civil')->dropDownList([
-            'S'=>'Soltero(a)',
-            'C'=>'Casado(a)',
-            'V'=>'Viudo(a)',
-            'D'=>'Divorciado(a)',
-            'U'=>'Unión Libre',
-    ]) ?>
+    <?= $form->field($model, 'estado_civil')->dropDownList($model->getOestado_civil()) ?>
 
     <?= $form->field($model, 'fecha_nac')->widget(\yii\jui\DatePicker::classname(), [
         'language' => 'es',

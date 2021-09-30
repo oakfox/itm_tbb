@@ -16,8 +16,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Actualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Eliminar', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -26,6 +26,10 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
+        <img src="<?= \yii\helpers\Url::base() ?>/uploads/img/<?= $model->url_foto ?>" width="150px" class="rounded float-left" alt="...">
+
+
+
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -33,11 +37,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'nombres',
             'ap_paterno',
             'ap_materno',
-            'sexo',
-            'estado_civil',
+            'nsexo',
+            'nestado_civil',
             'fecha_nac',
             'calle_num',
-            'estado_id',
+            'nestado_id',
             'municipio_id',
             'cp',
             'email:email',
@@ -47,11 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'tel_familiar',
             'rfc',
             'curp',
-            'created_at',
-            'updated_at',
-            'created_user_id',
-            'updated_user_id',
-            'url_foto:url',
+            //'url_foto:url',
         ],
     ]) ?>
 

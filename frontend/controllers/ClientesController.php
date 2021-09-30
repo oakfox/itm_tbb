@@ -76,13 +76,9 @@ class ClientesController extends Controller
                 $image = UploadedFile::getInstance($model, 'url_foto');
                 if (!is_null($image)) {
 
-                    //$model->image_src_filename = $image->name;
                     $ext = explode(".", $image->name);
-                    // generate a unique file name to prevent duplicate filenames
                     $img="foto-".Yii::$app->security->generateRandomString(). ".{$ext[1]}";
                     $model->url_foto = $img;
-                    // the path to save file, you can set an uploadPath
-                    // in Yii::$app->params (as used in example below)
                     Yii::$app->params['uploadPath'] = Yii::$app->basePath . '/web/uploads/img/';
                     $path = Yii::$app->params['uploadPath'] . $img;
                     $image->saveAs($path);
@@ -147,7 +143,6 @@ class ClientesController extends Controller
         if (($model = Clientes::findOne($id)) !== null) {
             return $model;
         }
-
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 }
